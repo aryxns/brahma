@@ -36,7 +36,7 @@ app.post("/score", async (req, res) => {
   let finalScore = 0;
   await Promise.all([
     queries.forEach(async (queryy) => {
-      finalScore += levels[queryy] * query[queryy].weight || 1;
+      finalScore += levels[queryy] * (query[queryy].weight || 1);
     }),
   ]);
   res.json(finalScore);

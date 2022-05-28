@@ -33,7 +33,6 @@ const queries = {
   everCastedVote: async (txns) => await castVote(txns),
   numberOfBorrows: async (txns) => await lendBorrow(txns, "borrow"),
   numberOfRepayments: async (txns) => await lendBorrow(txns, "repay"),
-  everCastedVote: (txns) => castVote(txns),
 };
 
 module.exports = queries;

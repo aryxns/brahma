@@ -1,4 +1,5 @@
 const express = require("express");
+const getUniqueContractInteractions = require("./functions/getUniqueContractInteractions");
 const app = express();
 const port = 3000;
 

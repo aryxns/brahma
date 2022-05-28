@@ -23,7 +23,8 @@ app.post("/score", async (req, res) => {
   await Promise.all([
     queries.forEach(async (queryy) => {
       const client = queryClients[queryy];
-      const result = await client(janamKundali, query[queryy].query || {});
+      const result = await client(janamKundali, query[queryy].query || {}, address);
+      console.log(result);
       data[queryy] = result;
       return;
     }),

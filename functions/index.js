@@ -4,6 +4,7 @@ const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
 const defi = require("./defi");
 const actions = require("./actions");
+const getNFTs = require("./NFTs");
 const penaltyForMint = require("./penaltyForMint");
 const outstandingLoans = require("./outstandingLoans");
 const queries = {
@@ -35,8 +36,14 @@ const queries = {
     await numberOfTransactions(txns, data.address),
   numberOfContractInteractionsSent: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "to"),
-  numberOfBorrows: async (txns) => await defi(txns, "borrow"),
-  numberOfRepayments: async (txns) => await defi(txns, "repay"),
+  numberOfBorrows: async (txns) => await actions(txns, "borrow"),
+  numberOfRepayments: async (txns) => await actions(txns, "repay"),
+  numberOfStakingTransactions: async (txns) => await actions(txns, "stake"),
+  numberOfProposalsCreated: async (txns) => await actions(txns, "proposal_created"),
+  everCastedVote: async (txns) => await castVote(txns),
+  numberOfNFTsHeld: async (txns, data, address) => await (await getNFTs(address)).number_of_NFTs,
+  numberOfBluechipsHeld: async (txns, data, address) => await (await getNFTs(address)).number_of_bluechip,
+  // isNFTPFP: async () => await 
   penaltyForMinting: async (txns, data) =>
     await penaltyForMint(txns, data.address),
   numberOfDeposits: async (txns) => await defi(txns, "deposit"),

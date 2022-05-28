@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 async function fetchTx(ethereumAddress, solanaAddress) {
   let finalResults = [];
   let result = await fetch(
-    `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=polygon`,
+    `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth`,
     {
       headers: {
         "X-API-Key":
@@ -17,7 +17,7 @@ async function fetchTx(ethereumAddress, solanaAddress) {
     // result.page_size * (result.page - 1) + result.result.length
   ) {
     result = await fetch(
-      `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=polygon&cursor=${cursor}`,
+      `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth&cursor=${cursor}`,
       {
         headers: {
           "X-API-Key":
@@ -35,7 +35,7 @@ async function fetchTx(ethereumAddress, solanaAddress) {
 async function fetchErc20Tx(ethereumAddress, solanaAddress) {
   let finalResults = [];
   let result = await fetch(
-    `https://deep-index.moralis.io/api/v2/${ethereumAddress}/erc20/transfers?chain=polygon`,
+    `https://deep-index.moralis.io/api/v2/${ethereumAddress}/erc20/transfers?chain=eth`,
     {
       headers: {
         "X-API-Key":
@@ -55,7 +55,7 @@ async function fetchErc20Tx(ethereumAddress, solanaAddress) {
     // result.page_size * (result.page - 1) + result.result.length
   ) {
     result = await fetch(
-      `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=polygon&cursor=${cursor}`,
+      `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth&cursor=${cursor}`,
       {
         headers: {
           "X-API-Key":
@@ -76,7 +76,7 @@ async function fetchErc20Tx(ethereumAddress, solanaAddress) {
 async function fetchNftTx(ethereumAddress, solanaAddress) {
   let finalResults = [];
   let result = await fetch(
-    `https://deep-index.moralis.io/api/v2/${ethereumAddress}/nft/transfers?chain=polygon`,
+    `https://deep-index.moralis.io/api/v2/${ethereumAddress}/nft/transfers?chain=eth`,
     {
       headers: {
         "X-API-Key":
@@ -91,7 +91,7 @@ async function fetchNftTx(ethereumAddress, solanaAddress) {
     // result.page_size * (result.page - 1) + result.result.length
   ) {
     result = await fetch(
-      `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=polygon&cursor=${cursor}`,
+      `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth&cursor=${cursor}`,
       {
         headers: {
           "X-API-Key":

@@ -3,7 +3,9 @@ async function numberOfErc20Transactions(txns, address) {
   if (address) {
     let num_txns = 0;
     if (typeof address === "string") {
-      return txns.ERC20s.filter((txn) => txn.address === address).length;
+      return txns.ERC20s.filter(
+        (txn) => txn.address.toLowerCase() === address.toLowerCase()
+      ).length;
     } else {
       address.forEach((_address, item) => {
         num_txns =

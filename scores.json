@@ -10,5 +10,6 @@
   "everHeldERC20": [1, 100],
   "everHeldNft": [1, 100],
   "numberOfContractInteractions": [1, 1.2],
-  "numberOfContractInteractionsSent": [1, 1.2]
+  "numberOfContractInteractionsSent": [1, 1.2],
+  "penaltyForMinting": [1, 1.2]
 }

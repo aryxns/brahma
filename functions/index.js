@@ -3,6 +3,7 @@ const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
 const lendBorrow = require("./lendBorrow");
+const penaltyForMint = require("./penaltyForMint");
 
 const queries = {
   numberOfTransactions: async (txns, data) =>
@@ -33,6 +34,7 @@ const queries = {
   everCastedVote: async (txns) => await castVote(txns),
   numberOfBorrows: async (txns) => await lendBorrow(txns, "borrow"),
   numberOfRepayments: async (txns) => await lendBorrow(txns, "repay"),
+  penaltyForMinting: async (txns, data) => await penaltyForMint(txns, data.address),
 };
 
 module.exports = queries;

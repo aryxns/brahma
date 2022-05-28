@@ -118,4 +118,6 @@ async function main(address) {
   };
   console.log(janamKundali);
 }
+
+module.exports = main;
 main("0x23302DA41ae4A69875321343D7ACA464a4E72DB2");

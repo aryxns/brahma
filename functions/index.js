@@ -2,7 +2,7 @@ const numberOfTransactions = require("./numberOfTransactions");
 const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
-const lendBorrow = require("./lendBorrow");
+const lendBorrow = require("./actions");
 const penaltyForMint = require("./penaltyForMint");
 
 const queries = {

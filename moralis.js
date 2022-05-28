@@ -156,3 +156,5 @@ async function main(){
 }
 
 main()
+
+module.exports = {fetchTx, fetchErc20Tx, fetchNftTx}

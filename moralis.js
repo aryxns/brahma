@@ -119,6 +119,8 @@ async function getJanamKundali(address) {
   return janamKundali;
 }
 
+module.exports = getJanamKundali;
+
 async function getContractTxns(address, txns) {
   let filter;
   if (typeof address === Array) {
@@ -147,14 +149,9 @@ async function getNumberOfTxns(address, txns) {
 // ever sent a particular ERC20 token
 // ever minted a particular ERC20 token
 
-
-async function main(){
-    const user = await getJanamKundali(
-      "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"
-    );
-    console.log(user.ERC20s);
+async function main() {
+  const user = await getJanamKundali(
+    "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"
+  );
+  console.log(user.ERC20s);
 }
-
-main()
-
-module.exports = {fetchTx, fetchErc20Tx, fetchNftTx}

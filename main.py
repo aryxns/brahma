@@ -18,7 +18,7 @@ web3 = Web3(Web3.HTTPProvider(
 app = FastAPI()
 
 
-@ app.get("/v3new")
+@app.get("/v3new")
 async def v3new(input: str):
     with open("v3.json") as f:
         abi = json.loads(f.read())['result']

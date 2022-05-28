@@ -6,7 +6,7 @@ import requests
 from web3 import Web3
 
 web3 = Web3(Web3.HTTPProvider(
-    "https: // eth-mainnet.alchemyapi.io/v2/8LiA7M2cWDG6azlTapCSdAfgow82wwrb"))
+    "https://eth-mainnet.alchemyapi.io/v2/8LiA7M2cWDG6azlTapCSdAfgow82wwrb"))
 app = FastAPI()
 
 

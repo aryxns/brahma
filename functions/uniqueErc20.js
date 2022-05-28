@@ -1,7 +1,8 @@
 const fetch = require("node-fetch");
-async function age(address) {
-  return await fetch(
-    "https://deep-index.moralis.io/api/v2/0x23302DA41ae4A69875321343D7ACA464a4E72DB2?chain=eth",
+
+async function uniqueErc20(address) {
+  const transfers = await fetch(
+    `https://deep-index.moralis.io/api/v2/erc20/${address}/transfers`,
     {
       headers: {
         "X-API-Key":
@@ -12,6 +13,8 @@ async function age(address) {
     .then((res) => res.json())
     .then((data) => {
       const txns = data.result;
-      return new Date() - new Date(txns[txns.length - 1].block_timestamp);
+      console.log(txns);
     });
 }
+
+uniqueErc20("0xb7f584bD2FB01E09b0A01AdE276d1397c2F5b678");

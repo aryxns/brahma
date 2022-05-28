@@ -14,3 +14,5 @@ async function getEns(address) {
   }
   return false;
 }
+
+module.exports = getEns;

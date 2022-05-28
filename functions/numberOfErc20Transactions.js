@@ -1,18 +1,22 @@
-async function numberOfErc20Transactions(txns, address) {
-  console.log(address);
+async function numberOfErc20Transactions(txns, query) {
+  let address;
+  try {
+    address = new Array(...query);
+  } catch (e) {
+    address = query;
+  }
   if (address) {
     let num_txns = 0;
     if (typeof address === "string") {
-      return txns.ERC20s.filter((txn) => txn.address === address).length;
+      return txns.ERC20s.filter(
+        (txn) => txn.address.toLowerCase() === address.toLowerCase()
+      ).length;
     } else {
-      address.forEach((_address, item) => {
-        num_txns =
-          num_txns +
-          txns.ERC20s.filter((txn) => 
-            txn.address.toLowerCase() === _address.toLowerCase()
-          ).length;
+      address.map((a) => {
+        num_txns += txns.ERC20s.filter(
+          (txn) => txn.address.toLowerCase() === a.toLowerCase()
+        ).length;
       });
-      console.log("nnn", num_txns);
       return num_txns;
     }
   }
@@ -20,3 +24,4 @@ async function numberOfErc20Transactions(txns, address) {
 }
 
 module.exports = numberOfErc20Transactions;
+// 0x95cd50F9d591630db85D95c932bbc704DC0aE92A

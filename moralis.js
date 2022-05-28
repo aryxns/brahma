@@ -25,11 +25,8 @@ async function fetchTx(ethereumAddress, solanaAddress) {
         },
       }
     ).then((res) => res.json());
-    try {
-      finalResults.push(...result.result);
-    } catch (e) {
-      console.log(e);
-    }
+    finalResults.push(...result.result);
+
     cursor = result.cursor;
   }
   return finalResults;
@@ -158,5 +155,4 @@ async function main() {
   const user = await getJanamKundali(
     "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"
   );
-  console.log(user.ERC20s);
 }

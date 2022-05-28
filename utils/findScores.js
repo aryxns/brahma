@@ -11,6 +11,7 @@ function findScore(query, number) {
     return 0;
   }
   score = 1;
+  cursor = 1;
   while (cursor < number) {
     const requiredBase = multiplier * currentBase;
     if (cursor + requiredBase > number) {
@@ -19,7 +20,6 @@ function findScore(query, number) {
       score += 1;
     }
     cursor += requiredBase;
-    console.log(cursor, number);
   }
   return score;
 }

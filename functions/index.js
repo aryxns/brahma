@@ -2,9 +2,10 @@ const numberOfTransactions = require("./numberOfTransactions");
 const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
-const lendBorrow = require("./actions");
+const defi = require("./defi");
+const actions = require("./actions");
 const penaltyForMint = require("./penaltyForMint");
-
+const outstandingLoans = require("./outstandingLoans");
 const queries = {
   numberOfTransactions: async (txns, data) =>
     await numberOfTransactions(txns, data),
@@ -27,14 +28,21 @@ const queries = {
   },
   everHeldNft: async (txns, data) =>
     await numberOfNftTransactions(txns, data.address),
+  numberOfMints: async (txns) => await actions(txns, "mint"),
+  numberOfWithdraws: async (txns) => await actions(txns, "withdraw"),
+  numberOfBurns: async (txns) => await actions(txns, "burn"),
   numberOfContractInteractions: async (txns, data) =>
     await numberOfTransactions(txns, data.address),
   numberOfContractInteractionsSent: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "to"),
-  numberOfBorrows: async (txns) => await lendBorrow(txns, "borrow"),
-  numberOfRepayments: async (txns) => await lendBorrow(txns, "repay"),
+  numberOfBorrows: async (txns) => await defi(txns, "borrow"),
+  numberOfRepayments: async (txns) => await defi(txns, "repay"),
   penaltyForMinting: async (txns, data) =>
     await penaltyForMint(txns, data.address),
+  numberOfDeposits: async (txns) => await defi(txns, "deposit"),
+  numberOfOutStandingPayments: async (txns, data) =>
+    outstandingLoans(txns, data),
+  numberOfOutStandingDays: async (txns, data) => outstandingLoans(txns, data),
 };
 
 module.exports = queries;

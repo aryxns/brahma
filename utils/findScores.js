@@ -16,12 +16,10 @@ function findScore(query, number) {
     const requiredBase = multiplier * currentBase;
     if (cursor + requiredBase > number) {
       score += (number - cursor) / requiredBase;
-      console.log("ergegregt");
     } else {
       score += 1;
     }
     cursor += requiredBase;
-    console.log(cursor, number);
   }
   return score;
 }

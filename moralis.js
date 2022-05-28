@@ -155,5 +155,4 @@ async function main() {
   const user = await getJanamKundali(
     "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"
   );
-  console.log(user.ERC20s);
 }

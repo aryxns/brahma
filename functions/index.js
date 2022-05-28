@@ -33,7 +33,8 @@ const queries = {
     await numberOfTransactions(txns, data.address, "to"),
   numberOfBorrows: async (txns) => await lendBorrow(txns, "borrow"),
   numberOfRepayments: async (txns) => await lendBorrow(txns, "repay"),
-  penaltyForMinting: async (txns, data) => await penaltyForMint(txns, data.address),
+  penaltyForMinting: async (txns, data) =>
+    await penaltyForMint(txns, data.address),
 };
 
 module.exports = queries;

@@ -10,9 +10,9 @@ const findScore = require("./utils/findScores");
 
 app.post("/score", async (req, res) => {
   const { address } = req.query;
-  console.log(req.body);
-  const { query } = req.body;
-  const queries = Object.keys(cleanQueries(query));
+  const { query: queryX } = req.body;
+  const query = cleanQueries(queryX);
+  const queries = Object.keys(query);
   const errors = queries.filter((query) => !allowedQueries.includes(query));
   if (errors.length > 0) {
     res.status(400).send(`${errors} are not allowed`);
@@ -24,7 +24,6 @@ app.post("/score", async (req, res) => {
     queries.forEach(async (queryy) => {
       const client = queryClients[queryy];
       const result = await client(janamKundali, query[queryy].query || {});
-      console.log(result);
       data[queryy] = result;
       return;
     }),
@@ -48,6 +47,4 @@ app.get("/kundali", async (req, res) => {
   res.json(janamKundali);
 });
 
-app.listen(3001, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+app.listen(3001, () => {});

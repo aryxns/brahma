@@ -1,9 +1,9 @@
 const fetch = require("node-fetch");
 
-async function uniqueErc20(address) {
+async function uniqueNFTs(address) {
   const addresses = [];
   const transfers = await fetch(
-    `https://deep-index.moralis.io/api/v2/erc20/${address}/transfers`,
+    `https://deep-index.moralis.io/api/v2/${address}/nft/transfers`,
     {
       headers: {
         "X-API-Key":
@@ -15,15 +15,14 @@ async function uniqueErc20(address) {
     .then((data) => {
       const txns = data.result;
       txns.map((txn) => {
-        if (addresses.includes(txn.address) == false) {
-          addresses.push(txn.address);
+        if (addresses.includes(txn.token_address) == false) {
+          addresses.push(txn.token_address);
         }
       });
     });
-
   return addresses.length;
 }
 
-uniqueErc20("0xb7f584bD2FB01E09b0A01AdE276d1397c2F5b678");
+uniqueNFTs("0xb7f584bD2FB01E09b0A01AdE276d1397c2F5b678");
 
-module.exports = uniqueErc20
+module.exports = uniqueNFTs;

@@ -29,7 +29,8 @@ const queries = {
   numberOfBorrows: async (txns) => 
     await lendBorrow(txns, "borrow"),
   numberOfRepayments: async (txns) => 
-    await lendBorrow(txns, "repay")
+    await lendBorrow(txns, "repay"),
+  everCastedVote: (txns) => castVote(txns),
 };
 
 module.exports = queries;

@@ -14,10 +14,10 @@ function getEtherscanApi() {
   ];
 }
 
-async function getVoted(txns) {
+function getVoted(txns) {
   let voted = 0;
   const transactions = txns.txns;
-  await Promise.all([transactions.map((tx) => {
+  transactions.map((tx) => {
     if (voted == 1) {
       return voted;
     } else {
@@ -25,7 +25,7 @@ async function getVoted(txns) {
         voted = 1;
       }
     }
-  })])
+  })
   return voted;
 }
 

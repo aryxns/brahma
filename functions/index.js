@@ -30,12 +30,11 @@ const queries = {
     await numberOfTransactions(txns, data.address),
   numberOfContractInteractionsSent: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "to"),
-  everCastedVote: async (txns) => await castVote(txns),
   numberOfBorrows: async (txns) => await lendBorrow(txns, "borrow"),
   numberOfRepayments: async (txns) => await actions(txns, "repay"),
   numberOfStakingTransactions: async (txns) => await actions(txns, "stake"),
   numberOfProposalsCreated: async (txns) => await actions(txns, "proposal_created"),
-  everCastedVote: (txns) => castVote(txns),
+  everCastedVote: async (txns) => await castVote(txns),
 };
 
 module.exports = queries;

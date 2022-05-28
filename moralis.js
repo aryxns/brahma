@@ -46,7 +46,12 @@ async function fetchErc20Tx(ethereumAddress, solanaAddress) {
       },
     }
   ).then((res) => res.json());
-  finalResults.push(...result.result);
+  try {
+    finalResults.push(...result.result);
+  } catch (e) {
+    console.log(e);
+  }
+
   let cursor = result.cursor;
   while (
     result.total > finalResults.length

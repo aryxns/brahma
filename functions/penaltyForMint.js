@@ -10,7 +10,7 @@ async function penaltyForMint(txns, address, toOrFrom = "to") {
         const timestamp = txn.timestamp;
         const time_difference = 24 * 60 * 60 * 1000;
         let mint_txn = transactions.filter(
-          (txn) => txn.timestamp > timestamp - time_difference
+          (txn) => txn.timestamp - timestamp < time_difference
         );
         const penaltyTransactions = [];
         if (mint_txn.length > 0) {

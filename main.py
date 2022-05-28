@@ -20,6 +20,7 @@ def get_etherscan_key():
 class Item(BaseModel):
     address: str
     input: str
+    abi: str
 
 
 web3 = Web3(Web3.HTTPProvider(
@@ -29,9 +30,7 @@ app = FastAPI()
 
 @app.post("/getMethod")
 async def getMethod(item: Item):
-    x = json.loads(requests.get(
-        "https://api.etherscan.io/api?module=contract&action=getabi&address=" + item.address + "&apikey=" + get_etherscan_key()).text)["result"]
     contract = web3.eth.contract(
-        address=web3.toChecksumAddress(item.address),  abi=x)
+        address=web3.toChecksumAddress(item.address),  abi=item.abi)
     func_obj, func_params = contract.decode_function_input(item.input)
     return func_obj.fn_name

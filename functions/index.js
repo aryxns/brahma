@@ -3,6 +3,7 @@ const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
 const actions = require("./actions");
+const getNFTs = require("./NFTs");
 
 const queries = {
   numberOfTransactions: async (txns, data) =>
@@ -30,11 +31,14 @@ const queries = {
     await numberOfTransactions(txns, data.address),
   numberOfContractInteractionsSent: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "to"),
-  numberOfBorrows: async (txns) => await lendBorrow(txns, "borrow"),
+  numberOfBorrows: async (txns) => await actions(txns, "borrow"),
   numberOfRepayments: async (txns) => await actions(txns, "repay"),
   numberOfStakingTransactions: async (txns) => await actions(txns, "stake"),
   numberOfProposalsCreated: async (txns) => await actions(txns, "proposal_created"),
   everCastedVote: async (txns) => await castVote(txns),
+  numberOfNFTsHeld: async (txns, data, address) => await (await getNFTs(address)).number_of_NFTs,
+  numberOfBluechipsHeld: async (txns, data, address) => await (await getNFTs(address)).number_of_bluechip
+  // isNFTPFP: async () => await 
 };
 
 module.exports = queries;

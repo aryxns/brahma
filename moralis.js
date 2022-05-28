@@ -107,7 +107,7 @@ async function fetchNftTx(ethereumAddress, solanaAddress) {
   return finalResults;
 }
 
-async function main(address) {
+async function getJanamKundali(address) {
   const NFTs = await fetchNftTx(address);
   const ERC20s = await fetchErc20Tx(address);
   const txns = await fetchTx(address);
@@ -116,8 +116,29 @@ async function main(address) {
     ERC20s,
     txns,
   };
-  console.log(janamKundali);
+  return janamKundali;
 }
 
-module.exports = main;
-main("0x23302DA41ae4A69875321343D7ACA464a4E72DB2");
+async function getContractTxns(address, txns) {
+  let filter;
+  if (typeof address === Array) {
+    address = new Set(address);
+    filter = txns.filter(
+      (txn) =>
+        address.includes(txn.from === address) ||
+        address.includes(txn.to === address)
+    );
+  } else {
+    filter = txns.filter((txn) => txn.from === address || txn.to === address);
+  }
+  return filter;
+}
+
+async function getNumberOfTxns(address, txns) {
+  return (await getContractTxns(address, txns)).length;
+}
+
+
+// const uniswap = [......]
+// userTxns = getJanamKundali(userAddress)
+// getContractTxns(uniswap, userTxns)

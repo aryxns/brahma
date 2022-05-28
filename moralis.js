@@ -138,7 +138,21 @@ async function getNumberOfTxns(address, txns) {
   return (await getContractTxns(address, txns)).length;
 }
 
+// ever held an NFT
+// ever held an ERC20 token
+// number of transactions
+// categories
+// ever sent a particular NFT
+// ever minted a particular NFT
+// ever sent a particular ERC20 token
+// ever minted a particular ERC20 token
 
-// const uniswap = [......]
-// userTxns = getJanamKundali(userAddress)
-// getContractTxns(uniswap, userTxns)
+
+async function main(){
+    const user = await getJanamKundali(
+      "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"
+    );
+    console.log(user.ERC20s);
+}
+
+main()

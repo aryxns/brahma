@@ -5,12 +5,12 @@ import json
 import requests
 from web3 import Web3
 from ast import literal_eval
-
 from pydantic import BaseModel
 
 
 class Item(BaseModel):
     address: str
+    input: str
     abi: str
 
 web3 = Web3(Web3.HTTPProvider(
@@ -32,5 +32,5 @@ async def getMethod(item: Item):
     abi = literal_eval(abi)
     contract = web3.eth.contract(
         address=item.address, abi=abi)
-    func_obj, func_params = contract.decode_function_input(item.address)
-    return func_params
+    func_obj, func_params = contract.decode_function_input(item.input)
+    return func_obj

@@ -20,6 +20,7 @@ async function uniqueErc20(address) {
         }
       });
     });
+    
   return addresses.length;
 }
 

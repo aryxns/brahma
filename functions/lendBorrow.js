@@ -6,7 +6,7 @@ const methodNames = {
 
 async function lendBorrow(txns, type) {
     if(type) {
-        return txns.txns.filter((txn) => txn[`input`].substring(0, 10) === methodNames(type)).length;
+        return txns.txns.filter((txn) => txn[`input`].substring(0, 10) === methodNames[type]).length;
     }
 
     return null

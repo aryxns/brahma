@@ -6,6 +6,7 @@ const queryClients = require("./functions");
 const allowedQueries = Object.keys(queryClients);
 app.use(express.json());
 const cleanQueries = require("./utils/cleanQueries");
+const findScore = require("./utils/findScores");
 
 app.post("/score", async (req, res) => {
   const { address } = req.query;
@@ -28,10 +29,23 @@ app.post("/score", async (req, res) => {
       return;
     }),
   ]);
-  
+  const levels = {};
+  console.log(levels);
 
-  console.log(data);
-  res.json(data);
+  Object.keys(data).forEach((query) => {
+    levels[query] = findScore(query, data[query]);
+  });
+  let finalScore = 0;
+  await Promise.all([
+    queries.forEach(async (queryy) => {
+      if (query[queryy].query) {
+        finalScore += levels[queryy] * (query[queryy].query.weight || 1);
+        return;
+      }
+      finalScore += levels[queryy] * 1;
+    }),
+  ]);
+  res.json(finalScore);
 });
 
 app.get("/kundali", async (req, res) => {

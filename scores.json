@@ -1,3 +1,4 @@
 {
-    "numberOfTransactions" : [5, 1.2]
+    "numberOfTransactions" : [1, 1.2],
+    "everCastedVote": [1, 2]
 }

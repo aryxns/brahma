@@ -2,7 +2,8 @@ const { fetchTx } = require("../moralis");
 const fetch = require("node-fetch");
 const ETHERSCAN_API_KEY = "JWB6Z8YDYCWDS4HG2JA5JDBSGIQC2EWFIM";
 const castVoteId = "0x56781388";
-const {ethers} = require("ethers")
+const { ethers } = require("ethers");
+const axios = require("axios");
 ETHERSCAN_API_KEYS = [
   "JWB6Z8YDYCWDS4HG2JA5JDBSGIQC2EWFIM",
   "21JE5I6E1NW533ATS1UZ2RZK3A8QXN37YG",
@@ -14,32 +15,17 @@ function getEtherscanApi() {
 }
 
 async function getVoted(txns) {
-  let voted = false;
+  let voted = 0;
   const transactions = txns.txns;
-  transactions.map(async (tx) => {
-    if (voted == true) {
+  await Promise.all([transactions.map((tx) => {
+    if (voted == 1) {
       return voted;
     } else {
-      console.log({
-        address: tx.to_address,
-        input: tx.input,
-      });
-      await fetch("http://0.0.0.0:80/getMethod", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          address: tx.to,
-          input: tx.input,
-        }),
-      }).then((method) => {
-        if (method == castVoteId) {
-          voted = true;
-        }
-      });
+      if (tx.input.substring(0, 10) == "0x56781388") {
+        voted = 1;
+      }
     }
-  });
+  })])
   return voted;
 }
 

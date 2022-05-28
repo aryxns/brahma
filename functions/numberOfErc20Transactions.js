@@ -1,17 +1,18 @@
 async function numberOfErc20Transactions(txns, address) {
-  console.log(address)
+  console.log(address);
   if (address) {
     let num_txns = 0;
-    if (typeof address == "string") {
-      return txns.filter((txn) => txn.token_address === address).length;
-    } else if (typeof address == Array) {
+    if (typeof address === "string") {
+      return txns.ERC20s.filter((txn) => txn.address === address).length;
+    } else {
       address.forEach((_address, item) => {
         num_txns =
           num_txns +
-          txns.filter((txn) => txn.token_address === _address).length;
+          txns.ERC20s.filter((txn) => 
+            txn.address.toLowerCase() === _address.toLowerCase()
+          ).length;
       });
-      console.log(num_txns);
-      process.exit();
+      console.log("nnn", num_txns);
       return num_txns;
     }
   }

@@ -1,4 +1,14 @@
 {
-    "numberOfTransactions" : [1, 1.2],
-    "everCastedVote": [1, 2]
+  "numberOfTransactions": [1, 1.2],
+  "everCastedVote": [1, 100],
+  "numberOfTransactionsTo": [1, 1.2],
+  "numberOfErc20Transactions": [1, 1.2],
+  "numberOfNftTransactions": [1, 1.2],
+  "numberOfTransactionsFrom": [1, 1.2],
+  "numberOfSpecificErc20Transactions": [1, 1.2],
+  "numberOfSpecificNftTransactions": [1, 1.2],
+  "everHeldERC20": [1, 100],
+  "everHeldNft": [1, 100],
+  "numberOfContractInteractions": [1, 1.2],
+  "numberOfContractInteractionsSent": [1, 1.2]
 }

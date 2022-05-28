@@ -30,19 +30,13 @@ app.post("/score", async (req, res) => {
     }),
   ]);
   const levels = {};
-  console.log(levels);
-
   Object.keys(data).forEach((query) => {
     levels[query] = findScore(query, data[query]);
   });
   let finalScore = 0;
   await Promise.all([
     queries.forEach(async (queryy) => {
-      if (query[queryy].query) {
-        finalScore += levels[queryy] * (query[queryy].query.weight || 1);
-        return;
-      }
-      finalScore += levels[queryy] * 1;
+      finalScore += levels[queryy] * query[queryy].weight || 1;
     }),
   ]);
   res.json(finalScore);
@@ -54,6 +48,6 @@ app.get("/kundali", async (req, res) => {
   res.json(janamKundali);
 });
 
-app.listen(port, () => {
+app.listen(3001, () => {
   console.log(`Example app listening on port ${port}`);
 });

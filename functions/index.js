@@ -16,8 +16,12 @@ const queries = {
     await numberOfErc20Transactions(txns, data.address),
   numberOfSpecificNftTransactions: async (txns, data) =>
     await numberOfNftTransactions(txns, data.address),
-  everHeldERC20: async (txns, data) =>
-    await numberOfErc20Transactions(txns, data.address),
+  everHeldERC20: async (txns, data) => {
+    if ((await numberOfErc20Transactions(txns, data.address)) > 0) {
+      return 1;
+    }
+    return 0;
+  },
   everHeldNft: async (txns, data) =>
     await numberOfNftTransactions(txns, data.address),
   numberOfContractInteractions: async (txns, data) =>

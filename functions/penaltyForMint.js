@@ -7,7 +7,7 @@ async function penaltyForMint(txns, address, toOrFrom = "to") {
   const transactions = txns.txns;
   let penaltyTransactionsCount = 0;
 
-  transactions.forEach((txn) => {
+  transactions.forEach(async (txn) => {
     // for mints
     const null_address = "0x0000000000000000000000000000000000000000";
     if (
@@ -15,7 +15,7 @@ async function penaltyForMint(txns, address, toOrFrom = "to") {
       txn.input.substring(0, 10) == "0x449a52f8"
     ) {
       // we need to check if the next few txns in the array have a timestamp lesser than 24 hours from timestamp of this txn.
-      function checkTimestamp(txns, txn) {
+      async function checkTimestamp(txns, txn) {
         const transactions = txns;
         const timestamp = txn.block_timestamp;
         const time_difference = 24 * 60 * 60 * 1000;
@@ -40,7 +40,7 @@ async function penaltyForMint(txns, address, toOrFrom = "to") {
         }
         return penaltyTransactions;
       }
-      const penaltyList = checkTimestamp(transactions, txn);
+      const penaltyList = await checkTimestamp(transactions, txn);
       penaltyTransactionsCount += penaltyList.length;
     }
   });

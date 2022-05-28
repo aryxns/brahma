@@ -15,3 +15,9 @@ async function age(address) {
       return new Date() - new Date(txns[txns.length - 1].block_timestamp);
     });
 }
+
+async function main() {
+  console.log(await age("0x23302DA41ae4A69875321343D7ACA464a4E72DB2"));
+}
+
+main();

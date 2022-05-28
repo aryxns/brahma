@@ -7,6 +7,9 @@ const allowedQueries = Object.keys(queryClients);
 app.use(express.json());
 const cleanQueries = require("./utils/cleanQueries");
 
+
+
+
 app.post("/score", async (req, res) => {
   const { address } = req.query;
   console.log(req.body);
@@ -28,10 +31,11 @@ app.post("/score", async (req, res) => {
       return;
     }),
   ]);
+  
+
   console.log(data);
   res.json(data);
 });
-
 
 app.get("/kundali", async (req, res) => {
   const { address } = req.query;

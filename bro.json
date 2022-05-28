@@ -1,0 +1,8 @@
+{
+    "query" : {
+        "numberOfContractInteractionsSent" : {"address": "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"},
+        "numberOfSpecificNftTransactions" : {"address" : ["gaming", "0x23302DA41ae4A69875321343D7ACA464a4E72DB2", "0x23302DA41ae4A69875321343D7ACA464a4E72DB2"]}
+    }
+}
+
+

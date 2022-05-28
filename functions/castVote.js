@@ -15,30 +15,17 @@ function getEtherscanApi() {
 }
 
 async function getVoted(txns) {
-  let voted = false;
+  let voted = 0;
   const transactions = txns.txns;
-  await Promise.all([
-    transactions.map(async (tx) => {
-        const abi = await fetch(
-          `https://api.etherscan.io/api?module=contract&action=getabi&address=${tx.to_address}&apikey=${ETHERSCAN_API_KEY}`
-        );
-        if (voted == true) {
-          return voted;
-        } else {
-          await axios
-            .post("http://0.0.0.0:80/getMethod", {
-              address: tx.to_address,
-              input: tx.input,
-              abi: abi,
-            })
-            .then((method) => {
-              if (method == castVoteId) {
-                voted = true;
-              }
-            });
-        }
-      })
-  ])
+  await Promise.all([transactions.map((tx) => {
+    if (voted == 1) {
+      return voted;
+    } else {
+      if (tx.input.substring(0, 10) == "0x56781388") {
+        voted = 1;
+      }
+    }
+  })])
   return voted;
 }
 

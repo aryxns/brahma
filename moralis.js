@@ -38,7 +38,7 @@ async function fetchTx(ethereumAddress, solanaAddress) {
 async function fetchErc20Tx(ethereumAddress, solanaAddress) {
   let finalResults = [];
   let result = await fetch(
-    `https://deep-index.moralis.io/api/v2/${ethereumAddress}/nft/transfers?chain=eth`,
+    `https://deep-index.moralis.io/api/v2/${ethereumAddress}/erc20/transfers?chain=eth`,
     {
       headers: {
         "X-API-Key":

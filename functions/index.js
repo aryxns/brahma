@@ -24,7 +24,7 @@ const queries = {
     await numberOfTransactions(txns, data.address),
   numberOfContractInteractionsSent: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "to"),
-  everCastedVote: async (txns) => await castVote(txns),
+  everCastedVote: (txns) => castVote(txns),
 };
 
 module.exports = queries;

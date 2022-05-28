@@ -20,8 +20,10 @@ async function uniqueErc20(address) {
         }
       });
     });
-    
+
   return addresses.length;
 }
 
 uniqueErc20("0xb7f584bD2FB01E09b0A01AdE276d1397c2F5b678");
+
+module.exports = uniqueErc20

@@ -2,10 +2,11 @@ const numberOfTransactions = require("./numberOfTransactions");
 const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
+const defi = require("./defi");
 const actions = require("./actions");
 const getNFTs = require("./NFTs");
 const penaltyForMint = require("./penaltyForMint");
-
+const outstandingLoans = require("./outstandingLoans");
 const queries = {
   numberOfTransactions: async (txns, data) =>
     await numberOfTransactions(txns, data),
@@ -28,6 +29,9 @@ const queries = {
   },
   everHeldNft: async (txns, data) =>
     await numberOfNftTransactions(txns, data.address),
+  numberOfMints: async (txns) => await actions(txns, "mint"),
+  numberOfWithdraws: async (txns) => await actions(txns, "withdraw"),
+  numberOfBurns: async (txns) => await actions(txns, "burn"),
   numberOfContractInteractions: async (txns, data) =>
     await numberOfTransactions(txns, data.address),
   numberOfContractInteractionsSent: async (txns, data) =>
@@ -35,6 +39,8 @@ const queries = {
   numberOfBorrows: async (txns) => await actions(txns, "borrow"),
   numberOfRepayments: async (txns) => await actions(txns, "repay"),
   numberOfStakingTransactions: async (txns) => await actions(txns, "stake"),
+  numberOfOpenseaTransactions: async (txns) => await actions(txns, "opensea"),
+  numberOfOpenseaCancellations: async (txns) => await actions(txns, "openseaCancellations"),
   numberOfProposalsCreated: async (txns) => await actions(txns, "proposal_created"),
   everCastedVote: async (txns) => await castVote(txns, false),
   numberOfVotesCasted: async (txns) => await castVote(txns, true),
@@ -43,6 +49,10 @@ const queries = {
   // isNFTPFP: async () => await 
   penaltyForMinting: async (txns, data) =>
     await penaltyForMint(txns, data.address),
+  numberOfDeposits: async (txns) => await defi(txns, "deposit"),
+  numberOfOutStandingPayments: async (txns, data) =>
+    outstandingLoans(txns, data),
+  numberOfOutStandingDays: async (txns, data) => outstandingLoans(txns, data),
 };
 
 module.exports = queries;

@@ -7,6 +7,8 @@ const actions = require("./actions");
 const getNFTs = require("./NFTs");
 const penaltyForMint = require("./penaltyForMint");
 const outstandingLoans = require("./outstandingLoans");
+const arweave = require("./arweave");
+
 const queries = {
   numberOfTransactions: async (txns, data) =>
     await numberOfTransactions(txns, data),
@@ -53,6 +55,8 @@ const queries = {
   numberOfOutStandingPayments: async (txns, data) =>
     outstandingLoans(txns, data),
   numberOfOutStandingDays: async (txns, data) => outstandingLoans(txns, data),
+  getArweaveBalance: async (txns, data) => await arweave(data, true),
+  getArweaveTxnSize: async (txns, data) => await arweave(data, false)
 };
 
 module.exports = queries;

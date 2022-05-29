@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, HStack, IconButton, Input, InputGroup, InputRightAddon, InputRightElement, Link, SimpleGrid, Skeleton, VStack } from '@chakra-ui/react'
+import { Box, Button, Center, Divider, Flex, HStack, IconButton, Input, InputGroup, InputRightAddon, InputRightElement, Link, SimpleGrid, Skeleton, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -14,9 +14,10 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 // import { CodeEditorEditable } from 'react-code-editor-editable';
 // import 'highlight.js/styles/dracula.css';
+import { useToast } from '@chakra-ui/react'
 
 export default function Home() {
-
+  const toast = useToast();
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [scores, setScores] = useState(null);
   const [query, setQuery] = useState("");
@@ -25,27 +26,48 @@ export default function Home() {
 
   const calcScore = async () => {
     setIsButtonLoading(true);
-
+    setSavedScores(null);
+  
     try {
       const {data} = await axios.post(`https://rhetorical-coat-production.up.railway.app/score?address=${address}`, JSON.parse(query));
       setScores(parseFloat(data).toFixed(2));
       setIsButtonLoading(false);
-      
+      const saved_scores = localStorage.getItem("saved_scores");
+      console.log(saved_scores);
+      if(saved_scores != "null" && saved_scores != null) {
+        const parsed_saved_scores = JSON.parse(saved_scores);
+        localStorage.setItem("saved_scores", JSON.stringify([...parsed_saved_scores, {
+          score: parseFloat(data).toFixed(2),
+          address: address
+        }]));
+      } else {
+        localStorage.setItem("saved_scores", JSON.stringify([{
+          score: parseFloat(data).toFixed(2),
+          address: address
+        }]));
+      }
     } catch (error) {
       console.log(error)
+      toast({
+        title: 'Eesh.',
+        description: "Error fetching your score. Please refresh and try again.",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
 
   useEffect(() => {
-    console.log(JSON.stringify(localStorage.getItem("saved")));
-    setSavedScores(JSON.stringify(localStorage.getItem("saved")));
+    console.log(JSON.parse(localStorage.getItem("saved_scores")));
+    setSavedScores(JSON.parse(localStorage.getItem("saved_scores")));
   }, []);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>The PP</title>
-        <meta name="description" content="The PP scores!" />
+        <title>TrustQL</title>
+        <meta name="description" content="TrustQL, on-chain reputation query language for your DApp!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -135,13 +157,17 @@ export default function Home() {
                     fontWeight: "bold"
                   }}>No saved scores!</p>)}
 
-                  {savedScores !== "null" && savedScores && savedScores.map((item, index) => {
-                    <p>{item.address} <ArrowForwardIcon /> {item.score}</p>
-                  })}
+                  {savedScores && savedScores != "null" && savedScores != null ? savedScores.map((item, index) => {
+                    <p style={{
+                      paddingTop: "5px",
+                      paddingBottom: "5px",
+                    }}>{item.address} <ArrowForwardIcon /> {item.score}</p>
+                  }): null}
 
                   <p style={{
-                    display: "block"
-                  }}>For a detailed breakdown of how we evaluated your address, visit <Link href="https://github.com/digxv" isExternal={true}>here <ExternalLinkIcon mx='2px' /></Link>.</p>
+                    display: "block",
+                    paddingTop: "10px"
+                  }}>For a detailed breakdown of how we evaluated your address, visit <Link href="https://ayshptk.gitbook.io/pied-piper-docs/" isExternal={true}>here <ExternalLinkIcon mx='2px' /></Link>.</p>
                 </Box>
               </VStack>
           </Box>

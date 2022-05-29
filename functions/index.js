@@ -6,6 +6,7 @@ const defi = require("./defi");
 const actions = require("./actions");
 const getNFTs = require("./NFTs");
 const penaltyForMint = require("./penaltyForMint");
+const getStakedTokens = require("./stakedTokens");
 const outstandingLoans = require("./outstandingLoans");
 const arweave = require("./arweave");
 const getEns = require("../oldFunctions/ens");
@@ -56,6 +57,7 @@ const queries = {
   // isNFTPFP: async () => await 
   penaltyForMinting: async (txns, data) =>
     await penaltyForMint(txns, data.address),
+  stakedTokens: async (txns, data) => await getStakedTokens(txns, data),
   numberOfDeposits: async (txns) => await defi(txns, "deposit"),
   numberOfOutStandingPayments: async (txns, data) =>
     outstandingLoans(txns, data),

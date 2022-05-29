@@ -11,5 +11,6 @@
   "everHeldNft": [1, 100],
   "numberOfContractInteractions": [1, 1.2],
   "numberOfContractInteractionsSent": [1, 1.2],
-  "penaltyForMinting": [1, 1.2]
+  "penaltyForMinting": [1, 1.2],
+  "stakedTokens": [1, 1.2]
 }

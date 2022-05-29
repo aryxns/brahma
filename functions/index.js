@@ -3,11 +3,10 @@ const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
 
-
 const defi = require("./defi");
 const actions = require("./actions");
 const getNFTs = require("./NFTs");
-const penaltyForMint = require("./penaltyForMint");
+const { penaltyForMint, rewardForHoldingLong } = require("./penaltyForMint");
 const getStakedTokens = require("./stakedTokens");
 const outstandingLoans = require("./outstandingLoans");
 const arweave = require("./arweave");
@@ -84,6 +83,7 @@ const queries = {
     (await getNFTs(address)).number_of_bluechip,
   // isNFTPFP: async () => await
   penaltyForMinting: async (txns) => await penaltyForMint(txns),
+  rewardForHolding: async (txns) => await rewardForHoldingLong(txns),
   stakedTokens: async (txns, data) => {
     const x = (await getStakedTokens(txns, data.address)).staked_tokens;
     console.log(x);
@@ -103,9 +103,7 @@ const queries = {
   },
   compoundUsage: async (txns, data) =>
     await numberOfTransactions(txns, contractConstants.compound),
-  walletAge: async (txns, data) =>
-    await age(txns),
-
+  walletAge: async (txns, data) => await age(txns),
 };
 
 module.exports = queries;

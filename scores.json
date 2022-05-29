@@ -34,6 +34,6 @@
   "haveEns": [0, 100],
   "compoundUsage": [1, 1.2],
   "walletAge": [1, 1.2],
-  "nativeBalance": [1, 10000]
+  "nativeBalance": [1, 10000],
+  "rewardForHolding": [1, 1.2]
 }
-

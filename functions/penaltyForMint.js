@@ -53,45 +53,50 @@ async function penaltyForMint(txns) {
 }
 
 async function rewardForHoldingLong(txns, address) {
-    const transactions = txns.txns;
-    let rewardTransactionsCount = 0;
-  
-    transactions.forEach(async (txn) => {
-      const null_address = "0x0000000000000000000000000000000000000000";
-      if (
-        txn.from_address == null_address ||
-        txn.input.substring(0, 10) == "0x449a52f8" || txn.input.substring(0, 10) == "0x" || txn.input.substring(0, 10) == "0x8e031cb6"
-      ) {
-        async function checkTimestamp(txns, txn) {
-          const transactions = txns;
-          const timestamp = txn.block_timestamp;
-          const time_difference = 30 * 24 * 60 * 60 * 1000;
-          let mint_txn = transactions.filter(
-            (t) =>
-              new Date(t.block_timestamp) > new Date(timestamp) && new Date(t.block_timestamp) - new Date(timestamp) < time_difference
-          );
-          const rewardTransactions = []
-          const token1 = await web3.eth.getTransaction(txn.hash)
-          const token2 = await web3.eth.getTransaction(txn.hash)
-          if (mint_txn.length > 0) {
-            mint_txn.map((t) => {
-              // these methods are for transfer, uniswap multicall and approve
-              if (
-                !(t.input.substring(0, 10) == "0xa9059cbb" ||
-                t.input.substring(0, 10) == "0x5ae401dc" ||
-                t.input.substring(0, 10) == "0x095ea7b3")
-              ) {
-                rewardTransactions.push(t);
-              }
-            });
-          }
-          return rewardTransactions;
-        }
-        const rewardList = await checkTimestamp(transactions, txn);
-        rewardTransactionsCount += rewardList.length;
-      }
-    });
-    return rewardTransactionsCount;
-  }
+  const transactions = txns.txns;
+  let rewardTransactionsCount = 0;
 
-module.exports = penaltyForMint;
+  transactions.forEach(async (txn) => {
+    const null_address = "0x0000000000000000000000000000000000000000";
+    if (
+      txn.from_address == null_address ||
+      txn.input.substring(0, 10) == "0x449a52f8" ||
+      txn.input.substring(0, 10) == "0x" ||
+      txn.input.substring(0, 10) == "0x8e031cb6"
+    ) {
+      async function checkTimestamp(txns, txn) {
+        const transactions = txns;
+        const timestamp = txn.block_timestamp;
+        const time_difference = 30 * 24 * 60 * 60 * 1000;
+        let mint_txn = transactions.filter(
+          (t) =>
+            new Date(t.block_timestamp) > new Date(timestamp) &&
+            new Date(t.block_timestamp) - new Date(timestamp) < time_difference
+        );
+        const rewardTransactions = [];
+        const token1 = await web3.eth.getTransaction(txn.hash);
+        const token2 = await web3.eth.getTransaction(txn.hash);
+        if (mint_txn.length > 0) {
+          mint_txn.map((t) => {
+            // these methods are for transfer, uniswap multicall and approve
+            if (
+              !(
+                t.input.substring(0, 10) == "0xa9059cbb" ||
+                t.input.substring(0, 10) == "0x5ae401dc" ||
+                t.input.substring(0, 10) == "0x095ea7b3"
+              )
+            ) {
+              rewardTransactions.push(t);
+            }
+          });
+        }
+        return rewardTransactions;
+      }
+      const rewardList = await checkTimestamp(transactions, txn);
+      rewardTransactionsCount += rewardList.length;
+    }
+  });
+  return rewardTransactionsCount;
+}
+
+module.exports = { penaltyForMint, rewardForHoldingLong };

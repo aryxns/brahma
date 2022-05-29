@@ -20,7 +20,7 @@ async function getNFTs(address) {
 
     data.forEach((_NFT) => {
       if (
-        _NFT == "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" ||
+        _NFT == "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d" ||
         _NFT == "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"
       ) {
         bluechip_held++;

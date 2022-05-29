@@ -10,7 +10,8 @@ const getStakedTokens = require("./stakedTokens");
 const outstandingLoans = require("./outstandingLoans");
 const arweave = require("./arweave");
 const getEns = require("../oldFunctions/ens");
-
+const contractConstants = require("../curated_theme_contracts.json");
+const age = require("./age");
 const queries = {
   numberOfTransactions: async (txns, data) =>
     await numberOfTransactions(txns, data),
@@ -92,6 +93,11 @@ const queries = {
     console.log(x);
     return x;
   },
+  compoundUsage: async (txns, data) =>
+    await numberOfTransactions(txns, contractConstants.compound),
+  walletAge: async (txns, data) =>
+    await age(txns),
+
 };
 
 module.exports = queries;

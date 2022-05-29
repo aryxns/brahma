@@ -1,5 +1,5 @@
 const config = {
-    etherscan_api_key: "JWB6Z8YDYCWDS4HG2JA5JDBSGIQC2EWFIM"
+  etherscan_api_key: process.env.ETHERSCAN_KEY,
 };
 
 module.exports = config;

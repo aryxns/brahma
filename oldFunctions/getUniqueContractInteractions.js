@@ -5,7 +5,7 @@ module.exports = async (user_address) => {
     try {
         const {data} = await axios({
             method: "GET",
-            url: `https://api.etherscan.io/api?module=account&action=txlist&address=${user_address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${config.etherscan_api_key}`
+            url: `https://api.etherscan.io/api?module=account&action=txlist&address=${user_address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${process.env.ETHERSCAN_KEY}`
         });
         
         if(data) {

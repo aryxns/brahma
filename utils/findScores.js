@@ -5,7 +5,7 @@ function findScore(query, number) {
   const minimum = xyz[0];
   let score = 0;
   const multiplier = xyz[1];
-  if (number > minimum) {
+  if (number > minimum && query !== "nativeBalance") {
     let cursor = 0;
     let currentBase = minimum;
     if (number < minimum) {

@@ -20,8 +20,7 @@ async function fetchTx(ethereumAddress, solanaAddress) {
       `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth&cursor=${cursor}`,
       {
         headers: {
-          "X-API-Key":
-            "gWhXCyk4w6DeyPqJizoiM7c0I4NaQZNYpVoCw0LRjJrUekCb7Ac55fL6ztxoIjJJ",
+          "X-API-Key": process.env.MORALIS,
         },
       }
     ).then((res) => res.json());
@@ -38,8 +37,7 @@ async function fetchErc20Tx(ethereumAddress, solanaAddress) {
     `https://deep-index.moralis.io/api/v2/${ethereumAddress}/erc20/transfers?chain=eth`,
     {
       headers: {
-        "X-API-Key":
-          "gWhXCyk4w6DeyPqJizoiM7c0I4NaQZNYpVoCw0LRjJrUekCb7Ac55fL6ztxoIjJJ",
+        "X-API-Key": process.env.MORALIS,
       },
     }
   ).then((res) => res.json());
@@ -58,8 +56,7 @@ async function fetchErc20Tx(ethereumAddress, solanaAddress) {
       `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth&cursor=${cursor}`,
       {
         headers: {
-          "X-API-Key":
-            "gWhXCyk4w6DeyPqJizoiM7c0I4NaQZNYpVoCw0LRjJrUekCb7Ac55fL6ztxoIjJJ",
+          "X-API-Key": process.env.MORALIS,
         },
       }
     ).then((res) => res.json());
@@ -79,8 +76,7 @@ async function fetchNftTx(ethereumAddress, solanaAddress) {
     `https://deep-index.moralis.io/api/v2/${ethereumAddress}/nft/transfers?chain=eth`,
     {
       headers: {
-        "X-API-Key":
-          "gWhXCyk4w6DeyPqJizoiM7c0I4NaQZNYpVoCw0LRjJrUekCb7Ac55fL6ztxoIjJJ",
+        "X-API-Key": process.env.MORALIS,
       },
     }
   ).then((res) => res.json());
@@ -94,8 +90,7 @@ async function fetchNftTx(ethereumAddress, solanaAddress) {
       `https://deep-index.moralis.io/api/v2/${ethereumAddress}?chain=eth&cursor=${cursor}`,
       {
         headers: {
-          "X-API-Key":
-            "gWhXCyk4w6DeyPqJizoiM7c0I4NaQZNYpVoCw0LRjJrUekCb7Ac55fL6ztxoIjJJ",
+          "X-API-Key": process.env.MORALIS,
         },
       }
     ).then((res) => res.json());

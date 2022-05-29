@@ -1,9 +1,3 @@
-const { fetchTx } = require("../moralis");
-const fetch = require("node-fetch");
-const ETHERSCAN_API_KEY = "JWB6Z8YDYCWDS4HG2JA5JDBSGIQC2EWFIM";
-const castVoteId = "0x56781388";
-const { ethers } = require("ethers");
-const axios = require("axios");
 
 function getVoted(txns, needNumber) {
   let voted = 0;

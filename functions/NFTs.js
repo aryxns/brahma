@@ -7,8 +7,7 @@ async function getNFTs(address) {
       `https://deep-index.moralis.io/api/v2/${address}/nft?chain=eth&format=decimal`,
       {
         headers: {
-          "X-API-Key":
-            "MGOkF9jd5yDR1jLRVPq1EmDWA5SmqzTUKCwiDq0fOuRWs5i0sMZtQtx2jhJyJRNG",
+          "X-API-Key": process.env.MORALIS,
         },
       }
     );

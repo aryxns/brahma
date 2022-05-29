@@ -152,16 +152,30 @@ export default function Home() {
                 )}
 
                 <Box borderRadius="10px" padding="15px" bg="#FCE3DC" width="100%" height="45vh">
-                  {savedScores == null || savedScores.length == 0 || savedScores == "null" && (<p style={{
-                    display: "block",
-                    fontWeight: "bold"
-                  }}>No saved scores!</p>)}
+                  {savedScores == null || savedScores.length == 0 || savedScores == "null" && (<h4 style={{
+                        color: "#5E024D",
+                        fontWeight: 800,
+                        textTransform: "uppercase",
+                        letterSpacing: 1.2
+                      }}>Your score</h4>)}
+
+                  {savedScores && savedScores != "null" && savedScores != null && (
+                    <h4 style={{
+                      color: "#5E024D",
+                      fontWeight: 800,
+                      textTransform: "uppercase",
+                      letterSpacing: 1.2,
+                      paddingBottom: "10px"
+                    }}>Saved scores</h4>
+                  )}
 
                   {savedScores && savedScores != "null" && savedScores != null ? savedScores.map((item, index) => {
-                    <p style={{
-                      paddingTop: "5px",
-                      paddingBottom: "5px",
-                    }}>{item.address} <ArrowForwardIcon /> {item.score}</p>
+                    return (
+                      <p key={index} style={{
+                        paddingTop: "5px",
+                        paddingBottom: "5px",
+                      }}>{item.address.substring(0, 5)}...{item.address.substring(item.address.length - 5)} <ArrowForwardIcon /> {item.score}</p>
+                    )
                   }): null}
 
                   <p style={{

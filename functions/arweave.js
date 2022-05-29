@@ -11,4 +11,4 @@ async function arweave(data, onlyBalance) {
     }
 }
 
-module.exports
+module.exports = arweave;

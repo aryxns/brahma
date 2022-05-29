@@ -8,7 +8,7 @@ async function outstandingLoans(txns, data) {
     (txn) => txn[`input`].substring(0, 10) === "0x0e752702"
   );
 
-  if (data.outstandingDays >= 1) {
+  if (data == "outstandingDaysAverage") {
     const daysPaid = [];
 
     loansTaken.map((loan) => {
@@ -25,7 +25,7 @@ async function outstandingLoans(txns, data) {
     const average =
       daysPaid.reduce((partialSum, a) => partialSum + a, 0) / daysPaid.length;
     return average;
-  } else {
+  } else if (data == "outstandingPayments") {
     if (loansTaken.length > loansPaid.length) {
       return loansTaken.length - loansPaid.length;
     } else {

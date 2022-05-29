@@ -27,14 +27,6 @@
     "moment": "^2.29.3",
     "moralis": "^1.7.0",
     "node-fetch": "2.6.7",
-<<<<<<< HEAD
-    "puppeteer-core": "^14.1.1",
-    "request": "^2.88.2"
-  },
-  "devDependencies": {
-    "puppeteer": "^14.1.1"
-=======
     "web3": "^1.7.3"
->>>>>>> a0debee80e639cfc81ca472245a67726d51ffc5b
   }
 }

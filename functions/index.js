@@ -9,6 +9,7 @@ const penaltyForMint = require("./penaltyForMint");
 const getStakedTokens = require("./stakedTokens");
 const outstandingLoans = require("./outstandingLoans");
 const arweave = require("./arweave");
+const getEns = require("../oldFunctions/ens");
 
 const queries = {
   numberOfTransactions: async (txns, data) =>
@@ -86,6 +87,11 @@ const queries = {
     outstandingLoans(txns, "outstandingPayments"),
   getArweaveBalance: async (txns, data) => await arweave(data, true),
   getArweaveTxnSize: async (txns, data) => await arweave(data, false),
+  haveEns: async (txns, data, address) => {
+    const x = await getEns(address);
+    console.log(x);
+    return x;
+  },
 };
 
 module.exports = queries;

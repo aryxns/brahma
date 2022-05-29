@@ -30,5 +30,6 @@
   "numberOfOutStandingPayments": [1, 1.2],
   "numberOfOutStandingDays": [1, 1.2],
   "getArweaveBalance": [1, 1.2],
-  "getArweaveTxnSize": [1, 1.2]
+  "getArweaveTxnSize": [1, 1.2],
+  "haveEns": [0, 100]
 }

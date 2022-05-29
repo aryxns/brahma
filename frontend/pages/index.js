@@ -26,7 +26,7 @@ export default function Home() {
 
   const calcScore = async () => {
     setIsButtonLoading(true);
-    setSavedScores(null);
+    setScores(null);
   
     try {
       const {data} = await axios.post(`https://rhetorical-coat-production.up.railway.app/score?address=${address}`, JSON.parse(query));

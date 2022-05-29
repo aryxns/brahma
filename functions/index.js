@@ -40,6 +40,7 @@ const queries = {
   numberOfRepayments: async (txns) => await actions(txns, "repay"),
   numberOfStakingTransactions: async (txns) => await actions(txns, "stake"),
   numberOfOpenseaTransactions: async (txns) => await actions(txns, "opensea"),
+  numberOfOpenseaCancellations: async (txns) => await actions(txns, "openseaCancellations"),
   numberOfProposalsCreated: async (txns) => await actions(txns, "proposal_created"),
   everCastedVote: async (txns) => await castVote(txns),
   numberOfNFTsHeld: async (txns, data, address) => await (await getNFTs(address)).number_of_NFTs,

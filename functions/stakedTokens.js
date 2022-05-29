@@ -3,7 +3,7 @@ const axios = require("axios");
 // const token_addresses = ["0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85", "0x40abc0be46decb904464c97ce0d804a839c70d60", "0x25ed58c027921e14d86380ea2646e3a1b5c55a8b"];
 
 async function stakedTokens(txns, query) {
-  const token_addresses = query.address;
+  const token_addresses = query.address || query;
   console.log(token_addresses);
   let stakedTokens = {};
   txns.ERC20s.forEach((item) => {

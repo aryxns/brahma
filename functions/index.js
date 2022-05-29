@@ -21,7 +21,14 @@ const queries = {
   numberOfTransactionsFrom: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "from"),
   numberOfPolygonBridges: async (txns) =>
-    await numberOfTransactions(txns, ["0xA0c68C638235ee32657e8f720a23ceC1bFc77C77", "0x401f6c983ea34274ec46f84d70b31c151321188b"], "from"),
+    await numberOfTransactions(
+      txns,
+      [
+        "0xA0c68C638235ee32657e8f720a23ceC1bFc77C77",
+        "0x401f6c983ea34274ec46f84d70b31c151321188b",
+      ],
+      "from"
+    ),
   numberOfSpecificErc20Transactions: async (txns, data) =>
     await numberOfErc20Transactions(txns, data.address),
   numberOfSpecificNftTransactions: async (txns, data) =>
@@ -32,8 +39,14 @@ const queries = {
     }
     return 0;
   },
-  everHeldNft: async (txns, data) =>
-    await numberOfNftTransactions(txns, data.address),
+  everHeldNft: async (txns, data) => {
+    console.log(data);
+    if ((await numberOfNftTransactions(txns, data.address)) > 0) {
+      return 1;
+    }
+    return 0;
+  },
+
   numberOfMints: async (txns) => await actions(txns, "mint"),
   numberOfWithdraws: async (txns) => await actions(txns, "withdraw"),
   numberOfBurns: async (txns) => await actions(txns, "burn"),
@@ -47,22 +60,32 @@ const queries = {
   numberOfApprovals: async (txns) => await defi(txns, "approve"),
   numberOfClaims: async (txns) => await defi(txns, "claim"),
   numberOfOpenseaTransactions: async (txns) => await actions(txns, "opensea"),
-  numberOfOpenseaCancellations: async (txns) => await actions(txns, "openseaCancellations"),
-  numberOfProposalsCreated: async (txns) => await defi(txns, "proposal_created"),
-  everCastedVote: async (txns) =>  castVote(txns, false),
-  numberOfVotesCasted: async (txns) =>  castVote(txns, true),
-  numberOfNFTsHeld: async (txns, data, address) => (await getNFTs(address)).number_of_NFTs,
-  numberOfBluechipsHeld: async (txns, data, address) => (await getNFTs(address)).number_of_bluechip,
-  // isNFTPFP: async () => await 
-  penaltyForMinting: async (txns, data) =>
-    await penaltyForMint(txns, data.address),
-  stakedTokens: async (txns, data) => await getStakedTokens(txns, data),
+  numberOfProposalsCreated: async (txns) =>
+    await defi(txns, "proposal_created"),
+  everCastedVote: async (txns) => castVote(txns, false),
+  numberOfVotesCasted: async (txns) => castVote(txns, true),
+  numberOfNFTsHeld: async (txns, data, address) => {
+    const x = (await getNFTs(address)).number_of_NFTs;
+    console.log(x);
+    return x;
+  },
+
+  numberOfBluechipsHeld: async (txns, data, address) =>
+    (await getNFTs(address)).number_of_bluechip,
+  // isNFTPFP: async () => await
+  penaltyForMinting: async (txns) => await penaltyForMint(txns),
+  stakedTokens: async (txns, data) => {
+    const x = (await getStakedTokens(txns, data.address)).staked_tokens;
+    console.log(x);
+    return x;
+  },
   numberOfDeposits: async (txns) => await defi(txns, "deposit"),
   numberOfOutStandingPayments: async (txns, data) =>
-    outstandingLoans(txns, data),
-  numberOfOutStandingDays: async (txns, data) => outstandingLoans(txns, data),
+    outstandingLoans(txns, "outstandingDaysAverage"),
+  numberOfOutStandingDays: async (txns, data) =>
+    outstandingLoans(txns, "outstandingPayments"),
   getArweaveBalance: async (txns, data) => await arweave(data, true),
-  getArweaveTxnSize: async (txns, data) => await arweave(data, false)
+  getArweaveTxnSize: async (txns, data) => await arweave(data, false),
 };
 
 module.exports = queries;

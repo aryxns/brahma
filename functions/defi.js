@@ -15,7 +15,7 @@ async function defi(txns, type) {
       (txn) => txn[`input`].substring(0, 10) === methodNames[type]
     ).length;
   }
-
+  
   return null;
 }
 

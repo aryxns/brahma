@@ -4,6 +4,7 @@ const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
 const lendBorrow = require("./actions");
 const penaltyForMint = require("./penaltyForMint");
+const getStakedTokens = require("./stakedTokens");
 
 const queries = {
   numberOfTransactions: async (txns, data) =>
@@ -35,6 +36,7 @@ const queries = {
   numberOfRepayments: async (txns) => await lendBorrow(txns, "repay"),
   penaltyForMinting: async (txns, data) =>
     await penaltyForMint(txns, data.address),
+  stakedTokens: async (txns, data) => await getStakedTokens(txns, data),
 };
 
 module.exports = queries;

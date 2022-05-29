@@ -1,11 +1,11 @@
 async function numberOfErc20Transactions(txns, query) {
   let address;
-  try {
-    address = new Array(...query);
-  } catch (e) {
-    address = query;
-  }
-  if (address) {
+  if (query) {
+    try {
+      address = query.address;
+    } catch (e) {
+      address = query;
+    }
     let num_txns = 0;
     if (typeof address === "string") {
       return txns.ERC20s.filter(

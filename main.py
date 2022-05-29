@@ -8,8 +8,8 @@ import random
 from ast import literal_eval
 from pydantic import BaseModel
 ETHERSCAN_API_KEYS = [
-    "JWB6Z8YDYCWDS4HG2JA5JDBSGIQC2EWFIM",
-    "21JE5I6E1NW533ATS1UZ2RZK3A8QXN37YG",
+    process.env.ETHERSCAN_KEY,
+    process.env.ETHERSCAN_KEY_2,
 ]
 
 

@@ -2,6 +2,8 @@ const numberOfTransactions = require("./numberOfTransactions");
 const numberOfErc20Transactions = require("./numberOfErc20Transactions");
 const numberOfNftTransactions = require("./numberOfNftTransactions");
 const castVote = require("./castVote");
+
+
 const defi = require("./defi");
 const actions = require("./actions");
 const getNFTs = require("./NFTs");

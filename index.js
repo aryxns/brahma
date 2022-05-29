@@ -7,7 +7,8 @@ const allowedQueries = Object.keys(queryClients);
 app.use(express.json());
 const cleanQueries = require("./utils/cleanQueries");
 const findScore = require("./utils/findScores");
-
+var cors = require("cors");
+app.use(cors());
 app.post("/score", async (req, res) => {
   const { address } = req.query;
   const { query: queryX } = req.body;

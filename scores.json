@@ -32,7 +32,8 @@
   "getArweaveBalance": [1, 1.2],
   "getArweaveTxnSize": [1, 1.2],
   "haveEns": [0, 100],
-  "nativeBalance": [1, 1.2],
   "compoundUsage": [1, 1.2],
-  "walletAge": [1, 1.2]
+  "walletAge": [1, 1.2],
+  "nativeBalance": [1, 10000]
 }
+

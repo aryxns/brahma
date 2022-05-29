@@ -4,8 +4,7 @@ async function age(address) {
     "https://deep-index.moralis.io/api/v2/0x23302DA41ae4A69875321343D7ACA464a4E72DB2?chain=eth",
     {
       headers: {
-        "X-API-Key":
-          "MGOkF9jd5yDR1jLRVPq1EmDWA5SmqzTUKCwiDq0fOuRWs5i0sMZtQtx2jhJyJRNG",
+        "X-API-Key": process.env.MORALIS,
       },
     }
   )

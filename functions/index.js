@@ -19,6 +19,8 @@ const queries = {
     await numberOfTransactions(txns, data.address, "to"),
   numberOfTransactionsFrom: async (txns, data) =>
     await numberOfTransactions(txns, data.address, "from"),
+  numberOfPolygonBridges: async (txns) =>
+    await numberOfTransactions(txns, ["0xA0c68C638235ee32657e8f720a23ceC1bFc77C77", "0x401f6c983ea34274ec46f84d70b31c151321188b"], "from"),
   numberOfSpecificErc20Transactions: async (txns, data) =>
     await numberOfErc20Transactions(txns, data.address),
   numberOfSpecificNftTransactions: async (txns, data) =>

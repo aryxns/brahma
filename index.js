@@ -12,6 +12,7 @@ app.post("/score", async (req, res) => {
   const { address } = req.query;
   const { query: queryX } = req.body;
   const query = cleanQueries(queryX);
+  console.log(query);
   const queries = Object.keys(query);
   const errors = queries.filter((query) => !allowedQueries.includes(query));
   if (errors.length > 0) {

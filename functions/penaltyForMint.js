@@ -45,7 +45,6 @@ async function penaltyForMint(txns) {
         return penaltyTransactions;
       }
       const penaltyList = await checkTimestamp(transactions, txn);
-
       penaltyTransactionsCount += penaltyList.length;
       console.log(penaltyTransactionsCount);
     }

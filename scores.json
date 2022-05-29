@@ -31,5 +31,6 @@
   "numberOfOutStandingDays": [1, 1.2],
   "getArweaveBalance": [1, 1.2],
   "getArweaveTxnSize": [1, 1.2],
-  "haveEns": [0, 100]
+  "haveEns": [0, 100],
+  "nativeBalance": [1, 1.2]
 }

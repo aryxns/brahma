@@ -10,7 +10,7 @@ const getStakedTokens = require("./stakedTokens");
 const outstandingLoans = require("./outstandingLoans");
 const arweave = require("./arweave");
 const getEns = require("../oldFunctions/ens");
-
+const nativeBalance = require("./nativeBalance");
 const queries = {
   numberOfTransactions: async (txns, data) =>
     await numberOfTransactions(txns, data),
@@ -68,6 +68,11 @@ const queries = {
   numberOfNFTsHeld: async (txns, data, address) => {
     const x = (await getNFTs(address)).number_of_NFTs;
     console.log(x);
+    return x;
+  },
+
+  nativeBalance: async (txns, data, address) => {
+    const x = await nativeBalance(address);
     return x;
   },
 

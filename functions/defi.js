@@ -5,6 +5,7 @@ const methodNames = {
   stake: "0xadc9772e",
   proposal_created: "0x6a761202",
   deposit: "0xe2bbb158",
+  approve: "0x095ea7b3"
 };
 
 async function defi(txns, type) {
